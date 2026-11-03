@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Cosmic Census: counting stars, worlds and life</title>
+<meta name="description" content="An interactive tour of how many stars, galaxies, possible worlds and living things there are.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="cursor-layer" aria-hidden="true"></canvas>
+
+<nav class="topnav" aria-label="Sections">
+  <a class="brand" href="#top">Cosmic Census</a>
+  <ul>
+    <li><a href="#scale">Scale</a></li>
+    <li><a href="#galaxy">Galaxy</a></li>
+    <li><a href="#ladder">Numbers</a></li>
+    <li><a href="#worlds">Worlds</a></li>
+    <li><a href="#life">Life</a></li>
+  </ul>
+</nav>
+
+<main id="top">
+  <header class="hero">
+    <h1 class="hero-title"><span class="count" id="star-count" aria-label="100 sextillion">100,000,000,000,000,000,000,000</span></h1>
+    <p class="hero-lede">That's roughly how many stars shine in the observable universe. Move your pointer: the stars feel its pull. Click anywhere to set one off.</p>
+    <a class="hero-cta" href="#scale">Start shrinking the universe</a>
+  </header>
+
+  <section id="scale" class="band">
+    <div class="band-head">
+      <h2>Shrink everything down</h2>
+      <p>Pick a scale model. Each bar's position is logarithmic, so every step right is ten times bigger.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Scale models">
+      <button role="tab" aria-selected="true" data-model="quarter">Solar system as a quarter</button>
+      <button role="tab" aria-selected="false" data-model="usa">Galaxy as wide as the US</button>
+      <button role="tab" aria-selected="false" data-model="dot">Earth as a pen dot</button>
+    </div>
+    <p class="scale-anchor" id="scale-anchor" aria-live="polite"></p>
+    <ol class="scale-list" id="scale-list"></ol>
+  </section>
+
+  <section id="galaxy" class="band split">
+    <div class="split-text">
+      <h2>Our galaxy, spinning</h2>
+      <p>The Milky Way is about 100,000 light-years across and holds 100 to 400 billion stars. The Sun sits 26,000 light-years from the center and takes 230 million years to go around once.</p>
+      <dl class="facts" id="galaxy-facts"></dl>
+      <h3>The giants</h3>
+      <p class="small">Width compared with the Milky Way.</p>
+      <ul class="giants" id="giants"></ul>
+    </div>
+    <div class="split-visual">
+      <canvas id="galaxy-canvas" width="640" height="640" role="img" aria-label="Animated spiral galaxy with a marker for the Sun"></canvas>
+      <label class="spin"><input type="range" id="spin" min="0" max="3" step="0.1" value="1"> Spin speed</label>
+    </div>
+  </section>
+
+  <section id="ladder" class="band">
+    <div class="band-head">
+      <h2>The ladder of big numbers</h2>
+      <p>Every count from this tour on one powers-of-ten ruler. Hover or focus a marker to read it.</p>
+    </div>
+    <div class="ladder-wrap"><svg id="ladder-svg" role="img" aria-label="Logarithmic ruler of quantities from millions to 10 to the 30"></svg></div>
+    <p class="ladder-readout" id="ladder-readout" aria-live="polite">Microbes on Earth outnumber the stars in the observable universe about 10 million to one.</p>
+  </section>
+
+  <section id="worlds" class="band split reverse">
+    <div class="split-text">
+      <h2>How many possible Earths?</h2>
+      <p>More than 6,000 planets have been confirmed around other stars, and most stars seem to have at least one. Roughly half of Sun-like stars may have a rocky planet in the zone where liquid water could exist. Adjust the assumptions to see the totals change.</p>
+      <div class="control">
+        <label for="stars-exp">Stars in the universe</label>
+        <input type="range" id="stars-exp" min="22" max="24" step="0.1" value="23">
+        <output id="stars-exp-out" for="stars-exp">10²³</output>
+      </div>
+      <div class="control">
+        <label for="fraction">Share with a habitable-zone rocky planet</label>
+        <input type="range" id="fraction" min="1" max="60" step="1" value="10">
+        <output id="fraction-out" for="fraction">10%</output>
+      </div>
+      <p class="caveat">Being in the zone doesn't make a planet habitable: air, water, a magnetic field and a calm star all matter.</p>
+    </div>
+    <div class="split-visual worlds-result">
+      <p class="result-label">Potentially habitable worlds</p>
+      <p class="result-number" id="worlds-out">10²²</p>
+      <p class="result-sub" id="per-person-out">about a trillion for every person alive</p>
+      <p class="result-error" id="worlds-error" role="alert"></p>
+    </div>
+  </section>
+
+  <section id="life" class="band">
+    <div class="band-head">
+      <h2>Life on the one world we know</h2>
+      <p>Squeeze Earth's 4.54 billion years into a single day. Drag the handle to travel through it.</p>
+    </div>
+    <div class="clock-row">
+      <svg id="clock" viewBox="0 0 400 400" role="img" aria-label="24-hour clock of Earth's history"></svg>
+      <div class="clock-side">
+        <input type="range" id="clock-scrub" min="0" max="1440" step="1" value="1440" aria-label="Time of day in Earth's history">
+        <p class="clock-time" id="clock-time">11:59:54 pm</p>
+        <p class="clock-event" id="clock-event" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="life-grid">
+      <div>
+        <h3>Where life's weight sits</h3>
+        <p class="small">Share of Earth's 550 billion tonnes of living carbon.</p>
+        <div class="biomass" id="biomass"></div>
+      </div>
+      <div>
+        <h3>Everyone who has ever lived</h3>
+        <p class="small">About 117 billion people have been born. Each dot is roughly 1.2 billion; the bright ones are alive today.</p>
+        <div class="people-dots" id="people-dots" role="img" aria-label="100 dots, 7 lit, showing 7 percent of all humans ever born are alive now"></div>
+        <p class="people-note">8.2 billion alive now, about 7% of all humans ever born.</p>
+      </div>
+      <div>
+        <h3>Kinds of life</h3>
+        <dl class="facts">
+          <div><dt>~2 million</dt><dd>species described so far</dd></div>
+          <div><dt>~8.7 million</dt><dd>estimated plant, animal and fungal species</dd></div>
+          <div><dt>up to 1 trillion</dt><dd>possible microbial species (debated)</dd></div>
+          <div><dt>99%+</dt><dd>of all species that ever lived are extinct</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Figures are published estimates with wide uncertainty; scale models are rounded. Sources:</p>
+  <ul id="sources"></ul>
+  <p class="status" id="api-status"></p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
