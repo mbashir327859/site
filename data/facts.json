@@ -1,0 +1,90 @@
+{
+  "milkyWay": {
+    "diameterLy": 100000,
+    "starsLow": 100000000000,
+    "starsHigh": 400000000000,
+    "massSolar": "1–1.5 trillion",
+    "sunDistanceFromCenterLy": 26000,
+    "orbitMillionYears": 230
+  },
+  "scaleModels": {
+    "quarter": {
+      "title": "The solar system as a US quarter",
+      "anchor": "Solar system (to Neptune) = 24 mm",
+      "items": [
+        { "name": "Solar system", "size": "24 mm", "like": "A quarter", "meters": 0.024 },
+        { "name": "Nearest star", "size": "~110 m away", "like": "A football field", "meters": 110 },
+        { "name": "Milky Way", "size": "~2,500 km", "like": "Los Angeles to Chicago", "meters": 2500000 }
+      ]
+    },
+    "usa": {
+      "title": "The Milky Way as wide as the US",
+      "anchor": "Milky Way = 4,500 km",
+      "items": [
+        { "name": "Earth", "size": "60 nm", "like": "Smaller than a virus", "meters": 6e-8 },
+        { "name": "The Sun", "size": "7 µm", "like": "A red blood cell", "meters": 7e-6 },
+        { "name": "Earth's orbit", "size": "1.4 mm", "like": "A grain of sand", "meters": 0.0014 },
+        { "name": "Solar system", "size": "4.3 cm", "like": "A golf ball", "meters": 0.043 },
+        { "name": "Nearest star", "size": "~190 m away", "like": "Two city blocks", "meters": 190 },
+        { "name": "Milky Way", "size": "4,500 km", "like": "Coast to coast", "meters": 4500000 }
+      ]
+    },
+    "dot": {
+      "title": "Earth as a ballpoint pen dot",
+      "anchor": "Earth = 0.5 mm",
+      "items": [
+        { "name": "Earth", "size": "0.5 mm", "like": "A pen dot", "meters": 0.0005 },
+        { "name": "The Sun", "size": "5.5 cm", "like": "A tennis ball, 6 m away", "meters": 0.055 },
+        { "name": "Solar system", "size": "~350 m", "like": "Three football fields", "meters": 350 },
+        { "name": "Nearest star", "size": "~1,700 km away", "like": "Los Angeles to Denver", "meters": 1700000 },
+        { "name": "Milky Way", "size": "~37 million km", "like": "Earth to Venus at closest", "meters": 37000000000 }
+      ]
+    }
+  },
+  "galaxies": [
+    { "name": "Porphyrion", "measure": "Radio jets", "sizeLy": 23000000 },
+    { "name": "Alcyoneus", "measure": "Radio jets", "sizeLy": 16000000 },
+    { "name": "IC 1101", "measure": "Stars", "sizeLy": 1700000 },
+    { "name": "UGC 2885", "measure": "Stars, largest spiral", "sizeLy": 832000 },
+    { "name": "Milky Way", "measure": "Stars", "sizeLy": 100000 }
+  ],
+  "ladder": [
+    { "label": "Species on Earth (estimated)", "exp": 6.94, "text": "8.7 million" },
+    { "label": "People alive", "exp": 9.91, "text": "8.2 billion" },
+    { "label": "Humans ever born", "exp": 11.07, "text": "117 billion" },
+    { "label": "Stars in the Milky Way", "exp": 11.4, "text": "100–400 billion" },
+    { "label": "Galaxies in the observable universe", "exp": 11.3, "text": "~200 billion" },
+    { "label": "Trees on Earth", "exp": 12.48, "text": "3 trillion" },
+    { "label": "Ants", "exp": 16.3, "text": "20 quadrillion" },
+    { "label": "Insects alive", "exp": 19, "text": "10 quintillion" },
+    { "label": "Potentially habitable planets (rough)", "exp": 22, "text": "~10²²" },
+    { "label": "Stars in the observable universe", "exp": 23, "text": "~10²³" },
+    { "label": "Microbial cells on Earth", "exp": 30, "text": "~10³⁰" }
+  ],
+  "earthDay": [
+    { "event": "Earth forms", "yearsAgo": 4540000000 },
+    { "event": "Earliest evidence of life", "yearsAgo": 3700000000 },
+    { "event": "Oxygen builds up in the air", "yearsAgo": 2400000000 },
+    { "event": "Cambrian explosion", "yearsAgo": 540000000 },
+    { "event": "Dinosaurs die out", "yearsAgo": 66000000 },
+    { "event": "Homo sapiens appears", "yearsAgo": 300000 }
+  ],
+  "biomass": [
+    { "group": "Plants", "gtC": 450 },
+    { "group": "Bacteria", "gtC": 70 },
+    { "group": "Fungi", "gtC": 12 },
+    { "group": "Archaea", "gtC": 7 },
+    { "group": "Protists", "gtC": 4 },
+    { "group": "Animals", "gtC": 2 },
+    { "group": "Humans", "gtC": 0.06 }
+  ],
+  "people": { "alive": 8200000000, "everBorn": 117000000000 },
+  "sources": [
+    "IAC 2026 (IC 1101); Leiden University 2022 (Alcyoneus); Oei et al. 2024 (Porphyrion)",
+    "Conselice et al. 2016; Lauer et al. 2021 (galaxy counts)",
+    "NASA Exoplanet Archive; Cassan et al. 2012; Bryson et al. 2020; Bonfils et al. 2012",
+    "Mora et al. 2011; Locey & Lennon 2016 (species)",
+    "Bar-On, Phillips & Milo 2018 (biomass); Crowther et al. 2015 (trees); Schultheiss et al. 2022 (ants)",
+    "UN World Population Prospects; Population Reference Bureau"
+  ]
+}
